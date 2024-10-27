@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show person</title>
+</head>
+    <body>
+        <p th:text="${person.getPersonName()} + ', ' + ${person.getYearOfBirth()}"> text </p>
+        <br/>
+
+        <div th:if="${person.getTakenBook().size()==0}">
+            <p>Человек пока не взял ни одной книги</p>
+        </div>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/people/{personId}/edit(personId=${person.getPersonId()})}">
+            <input type="submit" value="Редактировать"/>
+        </form>
+        <form th:method="DELETE" th:action="@{/people/{personId}(personId=${person.getPersonId()})}">
+            <input type="submit" value="Удалить"/>
+        </form>
+
+        <hr/>
+        <form th:method="GET" th:action="@{/people}">
+            <input type="submit" value="Назад"/>
+        </form>
+    </body>
+</html>
